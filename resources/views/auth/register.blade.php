@@ -8,20 +8,20 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form name="myForm" method="POST" action="{{ route('register') }}" onsubmit="return validateForm()">
                         @csrf
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+{{--                                @error('name')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @enderror--}}
                             </div>
                         </div>
 
@@ -29,13 +29,13 @@
                             <label for="lastName" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastName" type="name" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName">
+                                <input id="lastName" type="name" class="form-control" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName">
 
-                                @error('lastName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+{{--                                @error('lastName')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @enderror--}}
                             </div>
                         </div>
 
@@ -61,13 +61,27 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Next') }}
-                                </button>
+                        <div class="tab">Contact Info:
+                            <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
+                            <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+                        </div>
+
+                        <div style="overflow:auto;" class="form-group row mb-0">
+                            <div style="float:right;" class="col-md-6 offset-md-4">
+                                <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-primary">Previous</button>
+                                <button type="button" id="nextBtn" onclick="nextPrev(1)" class="btn btn-primary">Next</button>
                             </div>
                         </div>
+
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px;">
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                        </div>
+
+
                     </form>
                 </div>
             </div>
