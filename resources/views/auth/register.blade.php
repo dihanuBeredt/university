@@ -12,24 +12,24 @@
 
         <!-- One "tab" for each step in the form: -->
         <div class="tab">Name:
-            <p><input placeholder="First name..." oninput="this.className = ''"></p>
-            <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+            <p><input id="name" name="name" placeholder="First name..." oninput="this.className = ''"></p>
+            <p><input id="lname" name="lname" placeholder="Last name..." oninput="this.className = ''"></p>
         </div>
 
         <div class="tab">Contact Info:
-            <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
-            <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+            <p><input id="email" placeholder="E-mail..." oninput="this.className = ''"></p>
+            <p><input id = "phone" placeholder="Phone..." oninput="this.className = ''"></p>
         </div>
 
         <div class="tab">Birthday:
-            <p><input placeholder="dd" oninput="this.className = ''"></p>
-            <p><input placeholder="mm" oninput="this.className = ''"></p>
-            <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+            <p><input id="dd" placeholder="dd" oninput="this.className = ''"></p>
+            <p><input id="mm" placeholder="mm" oninput="this.className = ''"></p>
+            <p><input id="yyyy" placeholder="yyyy" oninput="this.className = ''"></p>
         </div>
 
         <div class="tab">Login Info:
-            <p><input placeholder="Username..." oninput="this.className = ''"></p>
-            <p><input placeholder="Password..." oninput="this.className = ''"></p>
+            <p><input id="username" placeholder="Username..." oninput="this.className = ''"></p>
+            <p><input id="password" placeholder="Password..." oninput="this.className = ''"></p>
         </div>
 
         <div style="overflow:auto;">
@@ -195,6 +195,74 @@
             //... and adds the "active" class on the current step:
             x[n].className += " active";
         }
+
+        // let saveFile = () => {
+        //
+        //     // Get the data from each element on the form.
+        //     const name = document.getElementById('name');
+        //     const lname = document.getElementById('lname');
+        //     const email = document.getElementById('email');
+        //     const phone = document.getElementById('phone');
+        //     const dd = document.getElementById('dd');
+        //     const mm = document.getElementById('mm');
+        //     const yyyy = document.getElementById('yyyy');
+        //     const username = document.getElementById('username');
+        //     const password = document.getElementById('password');
+        //
+        var name = document.getElementById('name');
+        var value = name.getAttribute('name');
+
+        window.alert(value);
+
+        var saveArray = [
+            name => document.getElementById('name'),
+            lname => document.getElementById('lname'),
+            email => document.getElementById('email'),
+            phone => document.getElementById('phone'),
+            dd => document.getElementById('dd'),
+            mm => document.getElementById('mm'),
+            yyyy => document.getElementById('yyyy'),
+            username => document.getElementById('username'),
+            password => document.getElementById('password'),
+        ];
+
+        console.log(saveArray);
+
+        // var myJSON = JSON.stringify(saveFile);
+
+            // This variable stores all the data.
+            // let data =
+            //     '\r Name: ' + name.value + ' \r\n ' +
+            //     'lname: ' +lname.value + ' \r\n ' +
+            //     'Email: ' + email.value + ' \r\n ' +
+            //     'phone: ' + phone.value + ' \r\n ' +
+            //     'dd: ' + dd.value;
+            //     'mm: ' + mm.value;
+            //     'yyyy: ' + yyyy.value;
+            //     'username: ' + username.value;
+            //     'password: ' + password.value;
+            //
+            //     console.log(data);
+
+            // Convert the text to BLOB.
+        //     const textToBLOB = new Blob([data], { type: 'text/plain' });
+        //     const sFileName = 'formData.txt';	   // The file to save the data.
+        //
+        //     let newLink = document.createElement("a");
+        //     newLink.download = sFileName;
+        //
+        //     if (window.webkitURL != null) {
+        //         newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        //     }
+        //     else {
+        //         newLink.href = window.URL.createObjectURL(textToBLOB);
+        //         newLink.style.display = "none";
+        //         document.body.appendChild(newLink);
+        //     }
+        //
+        //     newLink.click();
+        // }
+
     </script>
 
 @endsection
