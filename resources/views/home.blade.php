@@ -14,6 +14,8 @@
                         </div>
                     @endif
 
+                    {{$s}}
+
                     You are logged in!
                 </div>
             </div>
@@ -21,3 +23,13 @@
     </div>
 </div>
 @endsection
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    axios.get('/api/user').then(function (response) {
+        // handle success
+        console.log(response);
+    }).catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+</script>

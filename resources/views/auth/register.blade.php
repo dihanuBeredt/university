@@ -51,6 +51,8 @@
 
     </form>
 
+    {{$s}}
+
 
 
 
@@ -61,7 +63,11 @@
 @endsection
 
 @section('scripts')
-    <script>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js">
+        // import axios from 'axios';
+
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
 
@@ -137,6 +143,15 @@
         }
 
 
+        axios.get('/api/register').then(function (response) {
+            // handle success
+            console.log(response);
+        }).catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+
+
         // var array = [ '1' , '2'];
         // var x = array.push('7');
         // console.log(array);
@@ -158,8 +173,6 @@
 
             fields.push(inputVal1 , inputVal2 , inputVal3, inputVal4, inputVal5, inputVal6, inputVal7, inputVal8, inputVal9, inputVal10);
             var myJSON = JSON.stringify(fields);
-            var fs = require('fs');
-            fs.writeFile("file.json", myJSON);
             // Displaying the value
             console.log(myJSON);
         }
