@@ -51,7 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:255', 'numeric'],
             'dd' => ['required', 'string', 'max:255', 'numeric'],
@@ -73,7 +73,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'lastname' => $data['lastname'],
+            'lname' => $data['lname'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'dd'=> $data['dd'],
@@ -91,6 +91,16 @@ class RegisterController extends Controller
         $user = User::all();
         $s= response(json_encode($user));
 //        return $user ;
-        return view('auth.register', compact("s"));
+//        dd($s);
+        return view('auth.register', compact('s'));
+    }
+
+
+
+    public function showRegistrationForm(){
+        $user = User::all();
+        $s= response(json_encode($user));
+        return view('auth.register', compact('s'));
+
     }
 }

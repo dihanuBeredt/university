@@ -37,7 +37,7 @@
         <div style="overflow:auto;">
             <div style="float:right;">
                 <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                <button type="button" id="nextBtn" onclick="nextPrev(1);getInputValue();">Next</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
             </div>
         </div>
 
@@ -64,11 +64,11 @@
 
 @section('scripts')
 
+      // import axios from 'axios';
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js">
-        // import axios from 'axios';
-
-        var currentTab = 0; // Current tab is set to be the first tab (0)
+      <script>
+       var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
 
         function showTab(n) {
@@ -200,7 +200,7 @@
         // }
 
     </script>
-    <script src="{{ asset('js/app.js') }}"></script>
+
 
 @endsection
 
