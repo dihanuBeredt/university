@@ -1,68 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+    <div class="container">
 
 
 
 
-    <form id="regForm" action="">
+        <form id="regForm" action="">
 
-        <h1>Register:</h1>
+            <h1>Register:</h1>
 
-        <!-- One "tab" for each step in the form: -->
-        <div class="tab">Name:
-            <p><input id="name" name="name" placeholder="First name..." oninput="this.className = ''"></p>
-            <p><input id="lname" name="lname" placeholder="Last name..." oninput="this.className = ''"></p>
-        </div>
-
-        <div class="tab">Contact Info:
-            <p><input id="email" placeholder="E-mail..." oninput="this.className = ''"></p>
-            <p><input id ="phone" placeholder="Phone..." oninput="this.className = ''"></p>
-        </div>
-
-        <div class="tab">Login Info:
-            <p><input id="username" placeholder="Username..." oninput="this.className = ''"></p>
-            <p><input id="password" placeholder="Password..." oninput="this.className = ''"></p>
-            <p><input type="checkbox" id="checkbox" value="agree" >agree</p>
-        </div>
-
-
-        <div style="overflow:auto;">
-            <div style="float:right;">
-                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                <button type="button" id="nextBtn" onclick="{nextPrev(1),getInputValue()}" >Next</button>
+            <!-- One "tab" for each step in the form: -->
+            <div class="tab">Name:
+                <p><input id="name" name="name" placeholder="First name..." oninput="this.className = ''"></p>
+                <p><input id="lname" name="lname" placeholder="Last name..." oninput="this.className = ''"></p>
             </div>
-        </div>
 
-        <!-- Circles which indicates the steps of the form: -->
-        <div style="text-align:center;margin-top:40px;">
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
-        </div>
+            <div class="tab">Contact Info:
+                <p><input id="email" placeholder="E-mail..." oninput="this.className = ''"></p>
+                <p><input id ="phone" placeholder="Phone..." oninput="this.className = ''"></p>
+            </div>
 
-    </form>
-
-    {{$s}}
+            <div class="tab">Login Info:
+                <p><input id="username" placeholder="Username..." oninput="this.className = ''"></p>
+                <p><input id="password" placeholder="Password..." oninput="this.className = ''"></p>
+                <p><input type="checkbox" id="checkbox" value="agree" >agree</p>
+            </div>
 
 
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                    <button type="button" id="nextBtn" onclick="{nextPrev(1),getInputValue()}" >Next</button>
+                </div>
+            </div>
+
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+            </div>
+
+        </form>
+
+        {{$s}}
 
 
 
 
 
-</div>
+
+
+    </div>
 @endsection
 
 @section('scripts')
 
-      // import axios from 'axios';
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    // import axios from 'axios';
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-      <script>
-       var currentTab = 0; // Current tab is set to be the first tab (0)
+    <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
 
 
@@ -139,7 +139,7 @@
         }
 
 
-        axios.get('/api/register').then(function (response) {
+        axios.get('/api/steper').then(function (response) {
             // handle success
             console.log(response);
         }).catch(function (error) {
@@ -147,16 +147,16 @@
             console.log(error);
         })
 
-       axios.post('/api/register',{
-           name : AS ,
-           FAMILY : df
-       })
-           .then(function (response) {
-               console.log(response);
-           })
-           .catch(function (error) {
-               console.log(error);
-           });
+        axios.post('/api/steper',{
+            name : 'AS' ,
+            FAMILY : 'df'
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
         // var array = [ '1' , '2'];
         // var x = array.push('7');
@@ -170,14 +170,11 @@
             var inputVal2 = document.getElementById("lname").value;
             var inputVal3 = document.getElementById("email").value;
             var inputVal4 = document.getElementById("phone").value;
-            var inputVal5 = document.getElementById("dd").value;
-            var inputVal6 = document.getElementById("mm").value;
-            var inputVal7 = document.getElementById("yyyy").value;
             var inputVal8 = document.getElementById("username").value;
             var inputVal9 = document.getElementById("password").value;
             var inputVal10 = document.getElementById("checkbox").value;
 
-            fields.push(inputVal1 , inputVal2 , inputVal3, inputVal4, inputVal5, inputVal6, inputVal7, inputVal8, inputVal9, inputVal10);
+            fields.push(inputVal1 , inputVal2 , inputVal3, inputVal4, inputVal8, inputVal9, inputVal10);
             var myJSON = JSON.stringify(fields);
             // Displaying the value
             console.log(myJSON);

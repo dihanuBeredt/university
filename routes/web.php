@@ -26,6 +26,12 @@ Route::get('/', function () {
 Route::get('/api/user', 'HomeController@index')->name('home');
 
 
+Route::get('/steper','SteperController@newindex');
+Route::get('/api/steper','SteperController@index');
+Route::post('/steper','SteperController@newindex');
+Route::post('/api/steper','SteperController@index');
+
+
 Route::group(['namespace' => 'Auth'], function () {
     // Authentication Routes...
     Route::get('login', 'LoginController@showLoginForm')->name('login');
@@ -34,7 +40,8 @@ Route::group(['namespace' => 'Auth'], function () {
     // Registration Routes...
     Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
     Route::post('register', 'RegisterController@register');
-    Route::get('api/register', 'RegisterController@index');
+//    Route::get('api/register', 'RegisterController@index');
+//    Route::post('api/register', 'RegisterController@index');
     // Password Reset Routes...
     Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
