@@ -52,8 +52,14 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-//            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:255', 'numeric'],
+            'dd' => ['required', 'string', 'max:255', 'numeric'],
+            'mm' => ['required', 'string', 'max:255', 'numeric'],
+            'yyyy' => ['required', 'string', 'max:255', 'numeric'],
+            'username' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'checkbox' => ['required'],
         ]);
     }
 
@@ -68,6 +74,15 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'dd'=> $data['dd'],
+            'mm'=> $data['mm'],
+            'yyyy'=> $data['yyyy'],
+            'username'=> $data['username'],
+            'password'=> $data['password'],
+            'checkbox'=> $data['checkbox'],
+
 //            'password' => Hash::make($data['password']),
         ]);
     }
@@ -76,6 +91,6 @@ class RegisterController extends Controller
         $user = User::all();
         $s= response(json_encode($user));
 //        return $user ;
-        return view('auth.register', compact('s'));
+        return view('auth.register', compact("s"));
     }
 }
