@@ -37,7 +37,7 @@
         <div style="overflow:auto;">
             <div style="float:right;">
                 <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1);getInputValue();">Next</button>
             </div>
         </div>
 
@@ -71,6 +71,8 @@
        var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
 
+       var mmd;
+
         function showTab(n) {
             // This function will display the specified tab of the form...
             var x = document.getElementsByClassName("tab");
@@ -83,6 +85,7 @@
             }
             if (n == (x.length - 1)) {
                 document.getElementById("nextBtn").innerHTML = "Submit";
+                 mmd =1;
             } else {
                 document.getElementById("nextBtn").innerHTML = "Next";
             }
@@ -103,7 +106,7 @@
             if (currentTab >= x.length) {
 
                 // ... the form gets submitted:
-                getInputValue().submit();
+                document.getElementById("regForm").submit();
                 return false;
             }
             // Otherwise, display the correct tab:
@@ -151,6 +154,13 @@
             console.log(error);
         })
 
+       // axios.post('/register')
+       //     .then(function (response) {
+       //         console.log(response);
+       //     })
+       //     .catch(function (error) {
+       //         console.log(error);
+       //     });
 
         // var array = [ '1' , '2'];
         // var x = array.push('7');
@@ -174,6 +184,9 @@
             fields.push(inputVal1 , inputVal2 , inputVal3, inputVal4, inputVal5, inputVal6, inputVal7, inputVal8, inputVal9, inputVal10);
             var myJSON = JSON.stringify(fields);
             // Displaying the value
+            if(mmd == 1){
+                $.post('')
+            }
             console.log(myJSON);
         }
 

@@ -103,4 +103,10 @@ class RegisterController extends Controller
         return view('auth.register', compact('s'));
 
     }
+
+//    public function register(){
+//        $user = User::create();
+//
+//    }
+
 }
