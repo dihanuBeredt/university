@@ -31,7 +31,8 @@
             <div style="overflow:auto;">
                 <div style="float:right;">
                     <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                    <button type="button" id="nextBtn" onclick="{nextPrev(1),getInputValue()}" >Next</button>
+
+                    <button type="button" id="nextBtn" onclick="nextPrev(1),addInput(event)" >Next</button>
                 </div>
             </div>
 
@@ -44,6 +45,12 @@
             </div>
 
         </form>
+
+        <div id="message">
+            <pre>
+
+            </pre>
+        </div>
 
         {{$s}}
 
@@ -58,7 +65,9 @@
 
 @section('scripts')
 
-    // import axios from 'axios';
+{{--     import axios from 'axios';--}}
+
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
@@ -71,17 +80,24 @@
             var x = document.getElementsByClassName("tab");
             x[n].style.display = "block";
             //... and fix the Previous/Next buttons:
+
+
             if (n == 0) {
                 document.getElementById("prevBtn").style.display = "none";
             } else {
                 document.getElementById("prevBtn").style.display = "inline";
             }
+
+
+
             if (n == (x.length - 1)) {
-                document.getElementById("nextBtn").innerHTML = "Submit";
+                var submit = document.getElementById("nextBtn").innerHTML = "Submit";
                 // window.location.replace("");
             } else {
                 document.getElementById("nextBtn").innerHTML = "Next";
             }
+
+
             //... and run a function that will display the correct step indicator:
             fixStepIndicator(n)
         }
@@ -147,41 +163,79 @@
             console.log(error);
         })
 
-        axios.post('/api/steper',{
-            name : 'AS' ,
-            FAMILY : 'df'
+
+
+
+        // function getInputValue(){
+        //
+        //     var fields = [];
+        //     // Selecting the input element and get its value
+        //     var inputVal1 = document.getElementById("name").value;
+        //     var inputVal2 = document.getElementById("lname").value;
+        //     var inputVal3 = document.getElementById("email").value;
+        //     var inputVal4 = document.getElementById("phone").value;
+        //     var inputVal8 = document.getElementById("username").value;
+        //     var inputVal9 = document.getElementById("password").value;
+        //     var inputVal10 = document.getElementById("checkbox").value;
+        //
+        //     fields.push(inputVal1 , inputVal2 , inputVal3, inputVal4, inputVal8, inputVal9, inputVal10);
+        //     var myJSON = JSON.stringify(fields);
+        //     // Displaying the value
+        //     console.log(myJSON);
+        // }
+        //
+        //
+        // getInputValue();
+
+
+        var filds = [] ;
+
+        function addInput(event) {
+
+
+        // const addInput = (err)=>{
+           event.preventDefault();
+
+            var inputs = {
+                name : document.getElementById('name').value ,
+                lname :document.getElementById('lname').value,
+                email :document.getElementById("email").value,
+                phone : document.getElementById("phone").value,
+                username : document.getElementById("username").value,
+                password : document.getElementById("password").value,
+                checkbox : document.getElementById("checkbox").value
+            }
+
+            filds.push(inputs) ;
+
+            document.forms[0].reset();
+
+            console.warn('added',{filds}) ;
+
+
+            var pre = document.querySelector('#message pre');
+
+            pre.textContent = '\n' + JSON.stringify(filds , '\t' , 3) ;
+
+
+            localStorage.setItem('filedList',JSON.stringify(filds));
+
+
+        }
+
+        document.addEventListener('DomContentLoaded' , ()=> {
+            document.getElementById('nextBtn').addEventListener('click' , addInput) ;
         })
+
+        axios.post('/api/steper',{filds})
             .then(function (response) {
+
                 console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             });
 
-        // var array = [ '1' , '2'];
-        // var x = array.push('7');
-        // console.log(array);
-
-        function getInputValue(){
-
-            var fields = [];
-            // Selecting the input element and get its value
-            var inputVal1 = document.getElementById("name").value;
-            var inputVal2 = document.getElementById("lname").value;
-            var inputVal3 = document.getElementById("email").value;
-            var inputVal4 = document.getElementById("phone").value;
-            var inputVal8 = document.getElementById("username").value;
-            var inputVal9 = document.getElementById("password").value;
-            var inputVal10 = document.getElementById("checkbox").value;
-
-            fields.push(inputVal1 , inputVal2 , inputVal3, inputVal4, inputVal8, inputVal9, inputVal10);
-            var myJSON = JSON.stringify(fields);
-            // Displaying the value
-            console.log(myJSON);
-        }
-
-
-        getInputValue();
 
 
 
@@ -191,3 +245,7 @@
 
 
 @endsection
+
+{{-- var array = [ '1' , '2'];--}}
+{{-- var x = array.push('7');--}}
+{{-- console.log(array);--}}
